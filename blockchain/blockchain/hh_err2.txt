@@ -1,0 +1,4 @@
+Error HHE15: Invalid config:
+	* Config error in config.networks.hardhat.type: Invalid discriminator value. Expected 'http' | 'edr-simulated'
+
+For more info go to https://hardhat.org/HHE15 or run Hardhat with --show-stack-traces
