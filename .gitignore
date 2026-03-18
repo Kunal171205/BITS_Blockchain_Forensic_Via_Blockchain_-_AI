@@ -47,17 +47,16 @@ next-env.d.ts
 .env.development.local
 .env.test.local
 .env.production.local
-blockchain/.env
 
 # Project Specific
-blockchain/models/*.pkl
-blockchain/extracted_real_images/
-blockchain/extracted_tampered_images/
-blockchain/temp/
-blockchain/*.npy
-blockchain/out*.json
-blockchain/output.txt
-blockchain/admin_registry.json
+models/*.pkl
+extracted_real_images/
+extracted_tampered_images/
+temp/
+*.npy
+out*.json
+output.txt
+admin_registry.json
 
 # Hardhat / Solidity
 artifacts/
