@@ -149,6 +149,7 @@ def compute_accuracy(preds, masks):
     total = torch.numel(preds)
 
     return correct / total
+    
 def compute_iou(preds, masks):
 
     preds = torch.sigmoid(preds)
