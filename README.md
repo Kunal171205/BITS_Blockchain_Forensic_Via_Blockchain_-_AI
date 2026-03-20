@@ -1,65 +1,62 @@
-# Blockchain Document Verification & AI Forgery Detection
+# Blockchain Document Forensic & AI Forgery Detection
 
-This project provides a comprehensive end-to-end system for verifying the authenticity of documents using deep learning models (forgery detection) and anchoring authentic documents immutably to an Ethereum-based blockchain (Ganache).
+A powerful end-to-end system for verifying document authenticity using Deep Learning and Blockchain technology.
 
-## 🏗️ Architecture
+## 🚀 Overview
 
-The codebase strictly follows a **Three-Layer Architecture** to ensure clean separation of concerns, modularity, and maintainability:
+This project detects document tampering and forgery using a multi-model AI pipeline and provides immutable proof of authenticity by anchoring hashes to a local Ganache blockchain.
 
-1. **Presentation Layer (`presentation/`)**
-   - Handles all user interactions and acts as the entry point to the application.
-   - `presentation/ui/app.py`: A Streamlit web dashboard for interactive document verification and status checking.
-   - `presentation/cli/main_verifier.py`: A command-line interface for deploying contracts and verifying/anchoring documents directly from the terminal.
+## ✨ Core Features
 
-2. **Business Logic Layer (`business_logic/`)**
-   - Contains the core logic and intelligence of the application.
-   - `business_logic/services/ml_inference.py`: Orchestrates multiple ML models (Unet, EasyOCR, PyTesseract, structural analysis via OpenCV/JPEG DCT) to generate a comprehensive document tampering and forgery score.
-   - `business_logic/services/document_verification.py`: The bridging controller that securely evaluates the AI's verdict and dictates whether a document is allowed to be transmitted to the blockchain layer.
+- **AI Forgery Detection**: Uses a U-Net segmentation model and structural analysis to identify tampered regions in images.
+- **Blockchain Anchoring**: Authentic documents are hashed (SHA-256) and recorded on an Ethereum-based ledger for permanent verification.
+- **Unified Dashboard**: A premium Next.js interface for both regular Users (analysis) and Admins (registry management).
+- **Secure Authentication**: Role-based access control with JWT and encrypted passwords.
 
-3. **Data Access Layer (`data_access/`)**
-   - Manages all external, stateful interactions and infrastructure dependencies.
-   - `data_access/blockchain_client.py`: Facilitates Web3 connections locally, handles Smart Contract (DocRegistry) deployments, and anchors SHA-256 hashes to Ganache.
-   - `data_access/crypto_utils.py`: Contains cryptographic utilities for securely hashing local files.
+## 🌟 Beyond the Basics: Extraordinary Features
 
-## 🚀 Setup & Installation
+What makes this project stand out compared to standard verification systems:
 
-### Prerequisites
-- **Python 3.10+**
-- **Node.js** (for hardhat/solidity compilation if necessary)
-- **Ganache** (Local blockchain node instance running on `http://127.0.0.1:8545` or `7545`)
+1. **Multi-Model Forensic Pipeline**: The AI doesn't just look for "edits." It uses a **U-Net Segmentation** model to find pixel-level anomalies, **EasyOCR** to detect text inconsistencies, and **JPEG DCT Structural Analysis** to find hidden artifacts left behind by Photoshop or digital editing tools.
+2. **AI-Blockchain Interlock**: We've implemented a "Security Gate" where the system **automatically rejects** any document for anchoring if the AI confidence score falls below a threshold. This ensures only 100% authentic data ever touches the immutable ledger.
+3. **Visual "Digital X-Ray"**: Instead of a simple "Pass/Fail," the system generates a **Tamper Heatmap**. This allows investigators to see exactly which parts of a document (like a date, signature, or name) were digitally altered.
+4. **Cryptographic Fingerprinting**: By using SHA-256 hashing tied to Smart Contract events, the system creates a "Permanent Birth Certificate" for documents. Even a single pixel change in the original doc will cause a verification failure against the blockchain record.
 
-### Environment Variables
-Create a `.env` file in the root directory (or use `presentation/ui/.env` if inherited) with the following structure:
+## 🏗️ Technology Stack
 
-```env
-RPC_PROVIDER_URL=http://127.0.0.1:8545
-PRIVATE_KEY=your_ganache_private_key_here
-CONTRACT_ADDRESS=deployed_doc_registry_address_here
-```
+- **Frontend**: Next.js 14, React, Tailwind CSS, Lucide Icons, ethers.js.
+- **Backend**: Flask API, Web3.py, PyTorch, EasyOCR, OpenCV.
+- **Blockchain**: Ganache (Local RPC), Solidity (Smart Contracts).
+- **Database**: MongoDB (User management and audit logs).
 
-*Note: You can easily deploy a new contract using the CLI verifier below if you don't have a `CONTRACT_ADDRESS` yet.*
+## 🛠️ Quick Start
 
-## 💻 Usage
+### 1. Prerequisites
+- **Python 3.10+** & **Node.js 18+**
+- **Ganache** running on `http://localhost:7545`
+- **MongoDB** instance (Local or Atlas)
 
-### 1. Streamlit Dashboard (UI)
-Provide a visual, user-friendly interface to upload documents and trace the live execution of the ML pipeline followed by the blockchain transaction.
-
+### 2. Installation
 ```bash
-streamlit run presentation/ui/app.py
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Install Frontend dependencies
+cd frontend
+npm install
 ```
 
-### 2. Command Line Interface (CLI)
-The CLI allows power users to deploy new instances of the Smart Contract or process individual files rapidly.
+### 3. Setup
+1. Start **Ganache**.
+2. Deploy the Smart Contract:
+   ```bash
+   python deploy_local.py
+   ```
+3. Update `.env` and `frontend/.env.local` with your database and contract details.
 
-**To deploy a new DocRegistry contract:**
-```bash
-python presentation/cli/main_verifier.py --deploy "path/to/any/dummy/doc.pdf"
-```
+### 4. Running the Project
+- **Start Backend**: `python api_server.py`
+- **Start Frontend**: `cd frontend && npm run dev`
 
-**To verify or anchor a document to an existing contract:**
-```bash
-python presentation/cli/main_verifier.py --contract <0xYourContractAddress> "path/to/document.pdf"
-```
-
-## 📓 Notebook Reference
-For detailed history and experimental cell execution regarding the initial modeling of the Deep Learning pipeline, refer to the original comprehensive Jupyter Notebook preserved in the root directory: `notebook393b7c93af.ipynb`.
+## 📂 Project Structure
+For a detailed breakdown of all files and their roles, see **[FILE_CATEGORIZATION.md](FILE_CATEGORIZATION.md)**.
