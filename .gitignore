@@ -1,0 +1,69 @@
+# dependencies
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# testing
+coverage/
+
+# next.js
+.next/
+**/out/
+
+# production
+build/
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+.agents/
+.gemini/
+
+# debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env
+.env*.local
+**/.env
+**/.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# blockchain
+blockchain/artifacts/
+blockchain/cache/
+hh_err*.txt
+
+# python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.venv/
+.env/
+
+# ML/Data
+temp/
+**/temp/
+*.npy
+admin_registry.json
+dummy*.jpg
+out*.json
+notebook393b7c93af.ipynb
